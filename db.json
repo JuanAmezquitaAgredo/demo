@@ -41,7 +41,17 @@
             "name" : "Venta"
         }
     ],
-    "Seller" :[],
-    "Customer" :[],
+    "users" :[],
+    "roles":[
+        {
+            "id": 1,
+            "name": "Usuario"
+        },
+        {
+            "id": 2,
+            "name": "Propietario"
+        }
+        
+    ],
     "Properties":[]
   }

@@ -1,26 +1,26 @@
-import { LoginPage } from '../scenes/public/login';
-import { HomeScene } from '../scenes/private/home';
-import { ReportScene } from '../scenes/private/reports';
-import { SettingsScene } from '../scenes/private/settings';
-import { UserScene } from '../scenes/private/users';
-import { ForumScene } from '../scenes/private/forum';
-import { Showcases } from '../scenes/private/showcases';
-import { RegisterPage } from '../scenes/public/register';
-import { RootScene } from '../scenes/public/root';
+//Private
 
+import { notificationScene } from '../scenes/private/notification/notification';
+import { addEditScene } from '../scenes/private/add-edit/addEdit';
+import { ProfileScene } from '../scenes/private/profile';
+import { PropertyView } from '../scenes/public/property-view/propertyView';
+//Public
+import { HomeScene} from '../scenes/public/home';
+import { LoginPage } from '../scenes/public/login';
+import { RegisterPage } from '../scenes/public/register';
+import { availablePropertiesScene } from '../scenes/public/available-properties/availableProperties';
 
 export const routes = {
     private: [
-        { path: '/dashboard', component: HomeScene },
-        { path: '/dashboard/reports', component: ReportScene },
-        { path: '/dashboard/settings', component: SettingsScene },
-        { path: '/dashboard/users', component: UserScene },
-        { path: '/dashboard/forum', component: ForumScene},
-        { path: '/dashboard/show-cases', component: Showcases },
+        { path: '/profile', component: ProfileScene },
+        { path: '/add-edit', component: addEditScene },
+        { path: '/notificaion', component: notificationScene }
     ],
     public: [
-        { path: '/', component: RootScene},
+        { path: '/', component: HomeScene},
         { path: '/login', component: LoginPage },
-        { path: '/register', component: RegisterPage }   
+        { path: '/register', component: RegisterPage },
+        { path: '/availableProperties', component: availablePropertiesScene },  
+        { path: '/propertyView', component: PropertyView} 
     ]
 };

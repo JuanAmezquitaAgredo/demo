@@ -1,8 +1,9 @@
 import styles from './home.css';
-import { ReportScene } from '../reports'
 
-export function HomeScene() {
+export function ProfileScene() {
 
+
+  
   // generate random number between 1 an 10
   const randomNumber = Math.floor(Math.random() * 10) + 1;
 

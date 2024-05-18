@@ -15,21 +15,21 @@ export async function LoginFormComponent() {
         <button type="submit" class="${style['button-send']}">Login</button>
       </form>
     `;
-  
+
   const form = document.getElementById('loginForm');
   form.addEventListener('submit', async (event) => {
     event.preventDefault(); // previene el comportamiento por default que es, recargar la pagina
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    if(!formValidator(email, password)){
+    if (!formValidator(email, password)) {
       alert('Please fill in all fields');
       return;
     }
     const token = await login(email, password);
     if (token) {
       localStorage.setItem('token', token);
-      navigateTo('/dashboard');
+      navigateTo('/home');
     } else {
       alert('Invalid credentials');
     }
@@ -51,7 +51,7 @@ async function login(email, password) {
       throw new Error(`Error ${response.status}: ${errorMessage}`);
     }
 
-    const data = await response.json();
+    const data = { token: "mi token" }
     return data.token;
   } catch (error) {
     console.error('Login failed:', error);

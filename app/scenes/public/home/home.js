@@ -1,5 +1,6 @@
-import styles from './root.css';
-export async function RootScene() {
+import styles from './home.css';
+import photo from'./../../../assets/images/backhome.jpg'
+export async function HomeScene() {
     const root = document.getElementById('root');
     
     root.innerHTML = `
@@ -11,6 +12,7 @@ export async function RootScene() {
     </div>
     </header>
     `;
+    
 }
 
 // src="https://cdn.pixabay.com/photo/2013/09/15/06/59/medellin-182316_1280.jpg"

@@ -1,4 +1,3 @@
-import { DashboardLayout } from './components/layout/private/dashboard/dashboard-layout';
 import { routes } from './helpers/routes';
 
 const API_URL = 'http://localhost:4000/api/auth/verify-token';
@@ -38,11 +37,9 @@ async function checkAuth(path, params) {
   const token = localStorage.getItem('token');
 
   if (token) {
-    const [isValid] = await verifyToken(token);
-    if (isValid) {
-      // Redirigir al dashboard si se intenta acceder al login o a la raíz
-      if (path === '/login' || path === '/') {
-        navigateTo('/dashboard');
+      // Redirigir al perfil si se intenta acceder al login o a la raíz
+      if (path === '/login') {
+        navigateTo('/profile');
         return;
       }
 
@@ -50,16 +47,12 @@ async function checkAuth(path, params) {
       const privateRoute = routes.private.find((r) => r.path === path);
       if (privateRoute) {
         // hace la peticion al backend.
-        const { pageContent, logic } = privateRoute.component(params);
-        DashboardLayout(pageContent, logic)
+        privateRoute.component(params);
         return;
       } else {
-        navigateTo('/dashboard'); // Redirigir a dashboard si la ruta privada no existe
+        navigateTo('/home'); // Redirigir a home si la ruta privada no existe
       }
-    } else {
-      // Token no válido, redirigir a login
-      navigateTo('/login');
-    }
+    
   } else {
     // Si no hay token, redirigir a login
     navigateTo('/login');
@@ -75,11 +68,8 @@ export async function Router() {
   if (path === '/login') {
     const token = localStorage.getItem('token');
     if (token) {
-      const [isValid] = await verifyToken(token);
-      if (isValid) {
-        navigateTo('/dashboard');
-        return;
-      }
+      navigateTo('/profile');
+      return;
     }
   }
 
@@ -93,7 +83,7 @@ export async function Router() {
     checkAuth(path, params);
   } else {
     console.warn('Ruta no encontrada:', path);
-    navigateTo('/login');
+    navigateTo('/home');
   }
 }
 
